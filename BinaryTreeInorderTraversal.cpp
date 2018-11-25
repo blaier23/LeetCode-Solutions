@@ -28,5 +28,24 @@ public:
         if(root->right)
             inorderTraversalHelper(root->right,result);
     }
+    
+    vector<int> iterativeInorderTraversal(TreeNode* root) {
+        vector<int> result;
+        stack<TreeNode*> recursionStack;
+        TreeNode* curr = root;
+        while(!recursionStack.empty() || curr)
+        {
+            while(curr)
+            {
+                recursionStack.push(curr);
+                curr = curr->left;  
+            }
+                curr = recursionStack.top();
+            recursionStack.pop();
+            result.push_back(curr->val);
+            curr = curr->right; 
+        }
+        return result;
+    }
 };
 
